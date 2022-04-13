@@ -1,34 +1,78 @@
-#include <iostream>
 
-using namespace std;
 #include "ZorkUL.h"
+#include "mainwindow.h"
+#include "CommandWords.h"
+#include <QApplication>
+#include <QTextStream>
+#include <string>
+#include <iostream>
+#include <vector>
+#include "ui_mainwindow.h"
+#include "Room.h"
+#include "Parser.h"
+#include <iostream>
+#include <QPixmap>
+#include <QMessageBox>
+#include <stdlib.h>
+using namespace std;
 
-int main(int argc, char argv[]) {
-	ZorkUL temp;
-	temp.play();
-	return 0;
+//ima go
+
+
+int main(int argc, char *argv[]) {
+
+
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
+
+
+    ZorkUL temp;
+    temp.play();
+
+
+    return 0;
 }
+
+
+
 
 ZorkUL::ZorkUL() {
 	createRooms();
 }
 
 void ZorkUL::createRooms()  {
-	Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
+    Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j, *k;
 
-	a = new Room("a");
+    a = new Room("This is a musty hallway no windows only a door in front to your left to your right and behind you");
         a->addItem(new Item("x", 1, 11));
         a->addItem(new Item("y", 2, 22));
-	b = new Room("b");
+
+    b = new Room("This is a empty living room on a sofa and a old burnt out fire are in front of you");
         b->addItem(new Item("xx", 3, 33));
         b->addItem(new Item("yy", 4, 44));
-	c = new Room("c");
-	d = new Room("d");
-	e = new Room("e");
-	f = new Room("f");
-	g = new Room("g");
-	h = new Room("h");
-	i = new Room("i");
+    c = new Room("Theres a crackling fire in this room it looks like a small campfire however the light it emits is eaten by the shadows");
+    d = new Room("A typical kitchen with a press however the windows are drawn onto the wall");
+    e = new Room("Stairs only way forward is up");
+    f = new Room("Top of the stairs only way foward is ahead");
+    g = new Room("another hallway this one looks more clean and modern then the last");
+    h = new Room("A old house libary reeks of mold");
+    i = new Room("A crack in the wall turns into a door and you enter a small room that is a dead end");
+    j = new Room("A mad scienctists lab");
+    k = new Room("attic");
+
+    rooms.push_back(*a);
+    rooms.push_back(*b);
+    rooms.push_back(*c);
+    rooms.push_back(*d);
+    rooms.push_back(*e);
+    rooms.push_back(*f);
+    rooms.push_back(*g);
+    rooms.push_back(*h);
+    rooms.push_back(*i);
+    rooms.push_back(*j);
+
 
 //             (N, E, S, W)
 	a->setExits(f, b, d, c);
@@ -40,9 +84,12 @@ void ZorkUL::createRooms()  {
 	g->setExits(NULL, NULL, NULL, f);
 	h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
+    j->setExits(NULL, d, NULL, NULL);
+    k->setExits(NULL, d, NULL, NULL);
 
         currentRoom = a;
 }
+
 
 /**
  *  Main play routine.  Loops until end of play.
@@ -68,10 +115,10 @@ void ZorkUL::play() {
 }
 
 void ZorkUL::printWelcome() {
-	cout << "start"<< endl;
-	cout << "info for help"<< endl;
-	cout << endl;
-	cout << currentRoom->longDescription() << endl;
+  //  ui->OutputCons0le->append("start");
+   // ui->OutputCons0le->append("click info for your surroundings");
+  // ui->OutputCons0le->append("currentRoom->longDescription()");
+   emit sendText( "Here is new text" );
 }
 
 /**
@@ -115,10 +162,12 @@ bool ZorkUL::processCommand(Command command) {
         if (location  < 0 )
             cout << "item is not in room" << endl;
         else
+        {
             cout << "item is in room" << endl;
             cout << "index number " << + location << endl;
             cout << endl;
             cout << currentRoom->longDescription() << endl;
+        }
         }
     }
 
@@ -172,6 +221,13 @@ void ZorkUL::goRoom(Command command) {
 	}
 }
 
+
+string ZorkUL::randTeleport(){
+    currentRoom = &rooms.at((int) rand() % rooms.size());
+    cout << currentRoom->longDescription() << endl;
+    return "";
+}
+
 string ZorkUL::go(string direction) {
 	//Make the direction lowercase
 	//transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
@@ -184,4 +240,9 @@ string ZorkUL::go(string direction) {
 		currentRoom = nextRoom;
 		return currentRoom->longDescription();
 	}
+}
+
+void parseInput(const string &input)
+{
+
 }
