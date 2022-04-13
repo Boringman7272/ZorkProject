@@ -50,6 +50,9 @@ Command* Parser::getCommand() {
 /**
  * Print out a list of valid command words.
  */
+//made it a string
 void Parser::showCommands() {
-	commands->showAll();
+    string a;
+    commands->showAll();
+
 }

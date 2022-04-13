@@ -20,8 +20,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    ZorkUL* zork;
+    ZorkUL* zorkgame;
+    Parser* parser;
+    CommandWords commandword;
+    ZorkUL start_The_game();
     Ui::MainWindow *ui;
+    string paragraph();
 
 private slots:
     void on_pushButton_clicked();
@@ -52,7 +56,9 @@ private slots:
 
     void on_OutputCons0le_textChanged();
 
-   void  updateText( const QString & newText );
+  // void  updateText( const QString & newText );
+
+    void on_Playbutton_clicked();
 
 private:
     // Ui::MainWindow *ui;

@@ -14,6 +14,7 @@
 #include <QPixmap>
 #include <QMessageBox>
 #include <stdlib.h>
+#include <QDebug>
 using namespace std;
 
 //ima go
@@ -46,8 +47,8 @@ void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j, *k;
 
     a = new Room("This is a musty hallway no windows only a door in front to your left to your right and behind you");
-        a->addItem(new Item("x", 1, 11));
-        a->addItem(new Item("y", 2, 22));
+        a->addItem(new Item("yellow key", 1, 11));
+        a->addItem(new Item("bread", 2, 22));
 
     b = new Room("This is a empty living room on a sofa and a old burnt out fire are in front of you");
         b->addItem(new Item("xx", 3, 33));
@@ -95,6 +96,7 @@ void ZorkUL::createRooms()  {
  *  Main play routine.  Loops until end of play.
  */
 void ZorkUL::play() {
+
 	printWelcome();
 
 	// Enter the main command loop.  Here we repeatedly read commands and
@@ -118,7 +120,7 @@ void ZorkUL::printWelcome() {
   //  ui->OutputCons0le->append("start");
    // ui->OutputCons0le->append("click info for your surroundings");
   // ui->OutputCons0le->append("currentRoom->longDescription()");
-   emit sendText( "Here is new text" );
+   //emit sendText( "Here is new text" );
 }
 
 /**
@@ -196,9 +198,11 @@ bool ZorkUL::processCommand(Command command) {
 	return false;
 }
 /** COMMANDS **/
-void ZorkUL::printHelp() {
-	cout << "valid inputs are; " << endl;
-	parser.showCommands();
+string ZorkUL::printHelp() {
+    string s = "valid inputs are";
+    string a;
+    parser.showCommands();
+    return a;
 
 }
 

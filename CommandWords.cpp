@@ -37,9 +37,16 @@ bool CommandWords::isCommand(string aString) {
  */
 void CommandWords::showAll() {
 	//Loops through validCommands and prints each to the screen.
-	for (unsigned int i = 0; i < validCommands.size(); i++)
-	{
-		cout << validCommands[i]<< "  ";
-	}
-	cout << endl;
-}
+    for (unsigned int i = 0; i < validCommands.size(); i++)
+    {
+        cout << validCommands[i]<< "  ";
+    }
+    cout << endl;
+    //string s;
+    //for (unsigned int i = 0; i < validCommands.size(); i++)
+      //  {
+        //validCommands[i] = s;
+        //}
+    //return s;
+    }
+
