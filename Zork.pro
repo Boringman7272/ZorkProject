@@ -14,6 +14,7 @@ SOURCES += \
         ZorkUL.cpp \
         item.cpp \
         mainwindow.cpp \
+    wordle.cpp
 
 CONFIG += qmltypes
 QML_IMPORT_NAME = io.qt.examples.backend
@@ -39,7 +40,8 @@ HEADERS += \
     Room.h \
     ZorkUL.h \
     item.h \
-    mainwindow.h
+    mainwindow.h \
+    wordle.h
 
 DISTFILES += \
     Trash

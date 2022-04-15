@@ -25,7 +25,7 @@ public:
     CommandWords commandword;
     ZorkUL start_The_game();
     Ui::MainWindow *ui;
-    string paragraph();
+    void paragraph();
 
 private slots:
     void on_pushButton_clicked();
@@ -59,6 +59,10 @@ private slots:
   // void  updateText( const QString & newText );
 
     void on_Playbutton_clicked();
+
+    void on_Teleport_released();
+
+    void on_Inventory_copyAvailable(bool b);
 
 private:
     // Ui::MainWindow *ui;

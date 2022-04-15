@@ -21,10 +21,11 @@ public:
     string getLongDescription();
 	int getWeight();
 	void setWeight(int weightGrams);
-	float getValue();
+    //float getValue();
 	void setValue(float value);
 	int getWeaponCheck();
 	void setWeaponCheck(int weaponCheck);
+    int getValue();
 };
 
 #endif /*ITEM_H_*/

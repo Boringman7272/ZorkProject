@@ -39,6 +39,10 @@ public:
     string randTeleport();
     bool processCommand(Command command);
     void printWelcome();
+    string take(string item);
+    Room *currentItem;
+    vector<Item> inventory;
+    string addItemToInv(int location);
 
 signals:
   void  sendText( const QString & newText );

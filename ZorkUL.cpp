@@ -16,9 +16,11 @@
 #include <stdlib.h>
 #include <QDebug>
 using namespace std;
-
+#define PI 3.14159
 //ima go
 
+string s;
+vector<Item> inventory;
 
 int main(int argc, char *argv[]) {
 
@@ -46,22 +48,30 @@ ZorkUL::ZorkUL() {
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j, *k;
 
-    a = new Room("This is a musty hallway no windows only a door in front to your left to your right and behind you");
-        a->addItem(new Item("yellow key", 1, 11));
-        a->addItem(new Item("bread", 2, 22));
 
+    a = new Room("This is a musty hallway with a ambient buzz no windows only a doors in all directions front, back, left and right");
+        a->addItem(new Item("yellow key", 1, 11));
+        a->addItem(new Item("bread", 1, 22));
+        a->addItem(new Item("Gold1", 1, 500));
     b = new Room("This is a empty living room on a sofa and a old burnt out fire are in front of you");
         b->addItem(new Item("xx", 3, 33));
         b->addItem(new Item("yy", 4, 44));
+        b->addItem(new Item("Gold2", 1, 500));
     c = new Room("Theres a crackling fire in this room it looks like a small campfire however the light it emits is eaten by the shadows");
+        c->addItem(new Item("Gold4", 1, 500));
     d = new Room("A typical kitchen with a press however the windows are drawn onto the wall");
+        d->addItem(new Item("Gold3", 1, 500));
     e = new Room("Stairs only way forward is up");
+        e->addItem(new Item("Gold5", 1, 500));
     f = new Room("Top of the stairs only way foward is ahead");
+        f->addItem(new Item("Gold6", 1, 500));
     g = new Room("another hallway this one looks more clean and modern then the last");
     h = new Room("A old house libary reeks of mold");
     i = new Room("A crack in the wall turns into a door and you enter a small room that is a dead end");
     j = new Room("A mad scienctists lab");
+        j->addItem(new Item("Gold7", 1, 500));
     k = new Room("attic");
+
 
     rooms.push_back(*a);
     rooms.push_back(*b);
@@ -75,20 +85,22 @@ void ZorkUL::createRooms()  {
     rooms.push_back(*j);
 
 
+
 //             (N, E, S, W)
 	a->setExits(f, b, d, c);
-	b->setExits(NULL, NULL, NULL, a);
-	c->setExits(NULL, a, NULL, NULL);
-	d->setExits(a, e, NULL, i);
-	e->setExits(NULL, NULL, NULL, d);
+    b->setExits(NULL, NULL, e, a);
+    c->setExits(h, a, NULL, NULL);
+    d->setExits(a, e, j, i);
+    e->setExits(b, NULL, NULL, d);
 	f->setExits(NULL, g, a, h);
 	g->setExits(NULL, NULL, NULL, f);
-	h->setExits(NULL, f, NULL, NULL);
+    h->setExits(NULL, f, c, NULL);
     i->setExits(NULL, d, NULL, NULL);
-    j->setExits(NULL, d, NULL, NULL);
-    k->setExits(NULL, d, NULL, NULL);
+    j->setExits(d, NULL, k, NULL);
+    k->setExits(j, NULL, NULL, NULL);
 
         currentRoom = a;
+
 }
 
 
@@ -199,10 +211,9 @@ bool ZorkUL::processCommand(Command command) {
 }
 /** COMMANDS **/
 string ZorkUL::printHelp() {
-    string s = "valid inputs are";
-    string a;
+    cout << "valid inputs are";
     parser.showCommands();
-    return a;
+
 
 }
 
@@ -227,10 +238,27 @@ void ZorkUL::goRoom(Command command) {
 
 
 string ZorkUL::randTeleport(){
+
     currentRoom = &rooms.at((int) rand() % rooms.size());
-    cout << currentRoom->longDescription() << endl;
-    return "";
+        return currentRoom->longDescription();
+
 }
+   /* random = rooms.at((int) rand() % rooms.size());
+    Room* nextRoom =currentRoom -> &rooms.at((int) rand() % rooms.size());;
+
+    if (nextRoom == NULL)
+        cout<<"direction NUll"<< endl;
+
+    else
+{
+
+    currentRoom = nextRoom;
+    return currentRoom->longDescription();
+
+}
+
+}
+*/
 
 string ZorkUL::go(string direction) {
 	//Make the direction lowercase
@@ -246,6 +274,36 @@ string ZorkUL::go(string direction) {
 	}
 }
 
+string ZorkUL::take(string item) {
+    //Make the direction lowercase
+    //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
+    //Move to the next room
+    //Room* gold = currentItem->Item(item);
+    //if (gold == NULL)
+    //	return("gold null");
+    //else
+    //{
+    //	currentRoom = gold;
+    //	return currentRoom->longDescription();
+    //}
+
+}
+string ZorkUL::addItemToInv(int location)
+{
+    if (currentRoom->numberOfItems() == 0)
+    {
+        return "";
+    }
+    else
+    {
+        string sitem = currentRoom->getItem(location).getShortDescription();
+        Item item = currentRoom->getItem(location);
+        inventory.push_back(item);
+        currentRoom->removeItemFromRoom();
+        return sitem;
+    }
+
+}
 void parseInput(const string &input)
 {
 

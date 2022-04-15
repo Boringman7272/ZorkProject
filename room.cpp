@@ -71,6 +71,7 @@ int Room::isItemInRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
+
         return false;
         }
     else if (itemsInRoom.size() > 0) {
@@ -88,3 +89,23 @@ int Room::isItemInRoom(string inString)
     return -1;
 }
 
+string Room::takeItem(string item) {
+
+  //  string tempString = "items in room = ";
+   // int gold = 0;
+   // if (isItemInRoom("gold") > 0);{
+
+       //getValue();
+
+
+}
+
+
+Item Room::getItem(int location)
+{
+    return itemsInRoom[location];
+}
+void Room::removeItemFromRoom()
+{
+    itemsInRoom.pop_back();
+}

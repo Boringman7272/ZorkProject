@@ -19,7 +19,9 @@ private:
 
 public:
     int numberOfItems();
-	Room(string description);
+    Item getItem(int location);
+    string takeItem(string item);
+    Room(string description);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
 	string longDescription();
@@ -28,6 +30,7 @@ public:
     string displayItem();
     int isItemInRoom(string inString);
     void removeItemFromRoom(int location);
+    void removeItemFromRoom();
 };
 
 #endif
