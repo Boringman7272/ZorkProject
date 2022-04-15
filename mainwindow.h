@@ -64,6 +64,8 @@ private slots:
 
     void on_Inventory_copyAvailable(bool b);
 
+    void on_GoldCounter_copyAvailable(bool b);
+
 private:
     // Ui::MainWindow *ui;
 };

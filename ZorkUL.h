@@ -18,9 +18,9 @@ using namespace std;
 class ZorkUL {
 private:
 
-    Parser parser;
+    //Parser parser;
     /*Room *currentRoom;*/
-    void createRooms();
+    //void createRooms();
     //void printWelcome();
     /*bool processCommand(Command command);*/
     //void printHelp();
@@ -29,6 +29,9 @@ private:
     void displayItems();
     vector<Room> rooms;
 
+protected:
+    Parser parser;
+    void createRooms();
 
 public:
 	ZorkUL();    

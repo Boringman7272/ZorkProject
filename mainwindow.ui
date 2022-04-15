@@ -148,7 +148,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Gold</string>
+     <string>Secret word</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ClearButton">

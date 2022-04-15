@@ -108,15 +108,20 @@ void MainWindow::on_East_clicked()
 
 void MainWindow::on_GoldTooltip_clicked()
 {
-   // parser->showCommands();
-       // ui->OutputCons0le->setText(QString::fromStdString(parser->showCommands()));
+
+    QString text = ui->GoldCounter->toPlainText();
+       if(text == "golden"){
+           ui->OutputCons0le->append("CONGRADS youve won the game good job");
+       }
 }
 
 
 void MainWindow::on_Use_clicked()
 {
 
- if(zorkgame->inventory.size() < 7){
+ if(zorkgame->inventory.size() > 6){
+
+     cout << "congrads you have completed the game" << endl;
 
      qApp->quit();
 
@@ -127,9 +132,16 @@ void MainWindow::on_Use_clicked()
 
 void MainWindow::on_Item_clicked()
 {
+    if(zorkgame->inventory.size() > 6){
 
+        ui->Inventory->append("The gold statue when assembled makes out the word : golden ");
 }
+    else{
 
+        ui->OutputCons0le->append("no cheating");
+
+    }
+}
 
 void MainWindow::on_LOOT_clicked()
 {
@@ -166,8 +178,10 @@ void MainWindow::on_Playbutton_clicked()
     string help = "click the direction buttons to move through rooms. You will need to search rooms in order to find out what they contain."
                   "if your screen gets cluttered click the clear button however being able to see what past rooms contained can be helpful."
                   "Just rememeber to carefully search the rooms and click loot howver many times is nessarsy to pick up the items you need."
-                  "If you reference the map via the button you will your starting point is A and it is oriented accordingly.               "
-                  "Collect the 7 piece a mthyical gold treasure and click USE in order to escape and attempt a final puzzle.                              ";
+                  "If you reference the map via the button you will your starting point is A and it is oriented accordingly."
+                  "Collect the 7 piece a mthyical gold treasure and click ITEM in order to get the final sercret word."
+                  "Once Completed click USE to end the game once you have the 7 pieces or click item to reveal the secret word which you "
+                  "can enter into the text bpx TO ESCAPE. Good Luck adventurer ";
 
    ui->OutputCons0le->append("Welcome To Zork. This game takes place in a house where you have just awoken \n");
             ui->OutputCons0le->append(QString::fromStdString(help + z));
@@ -179,6 +193,7 @@ void MainWindow::on_Playbutton_clicked()
 
 void MainWindow::on_Teleport_released()
 {
+    //cannot get to work by moving rooms after teleporting
     zorkgame->randTeleport();
     ui->OutputCons0le->append(QString::fromStdString(zorkgame->currentRoom->shortDescription()));
     paragraph();
@@ -187,6 +202,12 @@ void MainWindow::on_Teleport_released()
 
 
 void MainWindow::on_Inventory_copyAvailable(bool b)
+{
+ b;
+}
+
+
+void MainWindow::on_GoldCounter_copyAvailable(bool b)
 {
 
 }

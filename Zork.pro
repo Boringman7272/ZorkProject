@@ -47,4 +47,5 @@ DISTFILES += \
     Trash
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    wordle.ui

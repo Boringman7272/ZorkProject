@@ -50,12 +50,8 @@ void ZorkUL::createRooms()  {
 
 
     a = new Room("This is a musty hallway with a ambient buzz no windows only a doors in all directions front, back, left and right");
-        a->addItem(new Item("yellow key", 1, 11));
-        a->addItem(new Item("bread", 1, 22));
         a->addItem(new Item("Gold1", 1, 500));
     b = new Room("This is a empty living room on a sofa and a old burnt out fire are in front of you");
-        b->addItem(new Item("xx", 3, 33));
-        b->addItem(new Item("yy", 4, 44));
         b->addItem(new Item("Gold2", 1, 500));
     c = new Room("Theres a crackling fire in this room it looks like a small campfire however the light it emits is eaten by the shadows");
         c->addItem(new Item("Gold4", 1, 500));
@@ -211,10 +207,11 @@ bool ZorkUL::processCommand(Command command) {
 }
 /** COMMANDS **/
 string ZorkUL::printHelp() {
+    string r;
     cout << "valid inputs are";
     parser.showCommands();
 
-
+    return r;
 }
 
 void ZorkUL::goRoom(Command command) {
@@ -286,25 +283,29 @@ string ZorkUL::take(string item) {
     //	currentRoom = gold;
     //	return currentRoom->longDescription();
     //}
-
+    return item;
 }
 string ZorkUL::addItemToInv(int location)
 {
-    if (currentRoom->numberOfItems() == 0)
+    string r;
+    if ((!currentRoom->numberOfItems()) == 0)
     {
-        return "";
-    }
-    else
-    {
+
         string sitem = currentRoom->getItem(location).getShortDescription();
+
         Item item = currentRoom->getItem(location);
+
         inventory.push_back(item);
+
         currentRoom->removeItemFromRoom();
         return sitem;
+    }
+        else{
+        return r;
     }
 
 }
 void parseInput(const string &input)
 {
-
+ input;
 }

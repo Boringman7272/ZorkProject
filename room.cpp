@@ -96,7 +96,7 @@ string Room::takeItem(string item) {
    // if (isItemInRoom("gold") > 0);{
 
        //getValue();
-
+    return item;
 
 }
 
